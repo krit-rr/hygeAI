@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HygeAI</title>
+    <title> HygeAI </title>
     <style>
       body {
         background-color: #368F8B;
         color: white;
-        font-family: Futura, Arial, sans-serif;
+        font-family: Futura;
+        text-decoration: none;
       }
+      
       #header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px;
+        padding: 10px; 
       }
+      
       #logo {
         font-size: 48px;
-        font-weight: bold;
+        font-weight: bold; /* Added font-weight */
       }
+      
       #menu {
         display: flex;
       }
+      
       #menu a {
         color: white;
-        margin-right: 10px;
+        margin-right: 25px; /* Increased margin */
+        font-size: 35px; 
+        font-weight: bold;
+        text-decoration: none;
       }
+      
       #content {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: calc(100vh - 50px);
+        height: calc(100vh - 50px); 
       }
+      
       h1 {
         font-size: 48px;
         margin-bottom: 20px;
         text-align: center;
-        font-weight: bold;
+        font-weight: normal; /* Changed font-weight */
+        font-style: italic;
       }
+      
       h2 {
-        font-size: 48px;
+        font-size: 40px;
         margin-bottom: 20px;
-        text-align: center;
+        text-align: center; 
+        text-decoration: none;
+        font-weight: normal; /* Changed font-weight */
       }
+
     </style>
   </head>
   <body>
     <div id="header">
-      <div id="logo">HygeAI</div>
+      <div id="logo"><b>HygeAI</b></div> <!-- Removed <b> tags -->
       <div id="menu">
         <a href="chatbot.hml">Chatbot</a>
         <a href="model.html">Model</a>
@@ -55,9 +70,8 @@
       </div>
     </div>
     <div id="content">
-      <h1> WE AREN’T MEDICAL PROFESSIONALS. </h1>
-      <h2> This is only an exploration into how ML/AI can be used in the mental health space. </h2>
-      <h2> Please look elsewhere if you're seeing professional psychological or psychiatric advice. </h2>
+      <h1> We aren't medical professionals! </h1>
+      <h2>This only explores how ML/AI can be used in the mental health space. Please look elsewhere for psychological/psychiatric advice. </h2>
     </div>
   </body>
 </html>
