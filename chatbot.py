@@ -7,7 +7,7 @@ from colorama import Fore, Back, Style
 load_dotenv()
 
 # configure OpenAI
-openai.api_key = os.getenv("OPENAI_API_KEY", "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")
+openai.api_key = os.getenv("OPENAI_API_KEY", "")
 
 INSTRUCTIONS = """You are an AI assistant that is an expert in mental health.
 You know about health, lifestyle, hygiene and safety.
