@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AI Therapist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Therapist</h1>
+        </div>
+        <div class="chatbot-container">
+            <div class="chatbot">
+                <div class="chatbot-header">
+                    <h3>AI Therapist</h3>
+                </div>
+                <div class="chatbot-body" id="chatbot-body">
+                    <div class="messages-container"></div>
+                </div>
+                <div class="chatbot-footer">
+                    <form onsubmit="return sendMessage()">
+                        <input type="text" id="user-input" placeholder="Type your message...">
+                        <button type="submit">Send<i class="fa fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            document.getElementById("user-input").value = "";
+
+            var messagesContainer = document.querySelector(".messages-container");
+            var userMessage = '<div class="message user-message"><p>' + userInput + '</p></div>';
+            messagesContainer.innerHTML += userMessage;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/get_chatbot_response?msg=" + userInput, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var chatbotMessage = '<div class="message chatbot-message"><p>' + xhr.responseText + '</p></div>';
+                    messagesContainer.innerHTML += chatbotMessage;
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+            };
+            xhr.send();
+
+            return false;
+        }
+    </script>
+</body>
+</html>
