@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitter Post Model Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_model.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Twitter Post Model Prediction</h1>
+      <form id="input-form">
+        <label for="twitter-post">Enter a Twitter post:</label>
+        <br>
+        <input type="text" id="twitter-post" name="twitter-post" required>
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
+      <br>
+      <div id="output"></div>
+    </div>
 
+    <script>
+      $(document).ready(function() {
+        $("#input-form").submit(function(event) {
+          event.preventDefault(); // Prevent form from submitting normally
+          var twitterPost = $("#twitter-post").val();
+          $.ajax({
+            type: "POST",
+            url: "/get_model_output",
+            data: { twitterPost: twitterPost },
+            success: function(response) {
+              $("#output").text(response);
+            },
+            error: function(xhr, status, error) {
+              console.log("Error:", error);
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

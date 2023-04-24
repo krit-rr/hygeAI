@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mental Health Survey</title>
+    <!-- Add some CSS to style the survey form -->
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
 
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+			color: #333;
+		}
+
+		form {
+			width: 50%;
+			margin: 50px auto;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.3);
+		}
+
+		label {
+			display: block;
+			font-weight: bold;
+			margin-top: 20px;
+			color: #555;
+		}
+
+		input[type=text] {
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.2);
+			width: 100%;
+			margin-top: 5px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+
+		button[type=submit] {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			margin-top: 20px;
+		}
+
+		button[type=submit]:hover {
+			background-color: #3e8e41;
+		}
+
+		#survey-results {
+			margin: 50px auto;
+			width: 50%;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.3);
+			text-align: center;
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Mental Health Survey</h1>
+
+	<form id="survey-form">
+		<label for="num-employees">How many employees does your company or organization have?</label><br>
+		<input type="text" id="num-employees" name="num-employees"><br><br>
+
+		<label for="mental-health-benefits">Does your employer provide mental health benefits as part of healthcare coverage?</label><br>
+		<input type="text" id="mental-health-benefits" name="mental-health-benefits"><br><br>
+
+		<label for="anonymity-protected">Is your anonymity protected if you choose to take advantage of mental health or substance abuse treatment resources provided by your employer?</label><br>
+		<input type="text" id="anonymity-protected" name="anonymity-protected"><br><br>
+
+		<label for="negative-consequences">Do you think that discussing a mental health disorder with your employer would have negative consequences?</label><br>
+		<input type="text" id="negative-consequences" name="negative-consequences"><br><br>
+
+		<label for="previous-employers">Did you feel that your previous employers took mental health as seriously as physical health?</label><br>
+		<input type="text" id="previous-employers" name="previous-employers"><br><br>
+
+		<label for="bring-up-issue">Would you bring up a mental health issue with a potential employer in an interview?</label><br>
+		<input type="text" id="bring-up-issue" name="bring-up-issue"><br><br>
+
+		<label for="unsupportive-response">Have you observed or experienced an unsupportive or badly handled response to a mental health issue in your current or previous workplace?</label><br>
+		<input type="text" id="unsupportive-response" name="unsupportive-response"><br><br>
+
+		<label for="family-history">Do you have a family history of mental illness?</label><br>
+		<input type="text" id="family-history" name="family-history"><br><br>
+
+		<label for="past-disorder">Have you had a mental health disorder in the past?</label><br>
+		<input type="text" id="past-disorder" name="past-disorder"><br><br>
+
+		<label for="current-disorder">Do you currently have a mental health disorder?</label><br>
+		<input type="text" id="current-disorder" name="current-disorder"><br><br>
+
+		<label for="seek-treatment">Have you ever sought treatment for a mental health issue from a mental health professional?</label><br>
+		<input type="text" id="seek-treatment" name="seek-treatment"><br><br>
+
+		<label for="remote-work">Do you work remotely?</label><br>
+		<input type="text" id="remote-work" name="remote-work"><br><br>
+
+		<label for="employer-discussion">Has your employer ever formally discussed mental health (for example, as part of a wellness campaign or other official communication)?</label><br>
+		<input type="text" id="employer-discussion" name="employer-discussion"><br><br>
+
+		<label for="mental-health-resources">Does your employer offer resources to learn more about mental health concerns and options for seeking help?</label><br>
+		<input type="text" id="mental-health-resources" name="mental-health-resources"><br><br>
+
+        <label for="physical-health">Do you think that discussing a physical health issue with your employer would have negative consequences?</label><br>
+		<input type="text" id="physical-health" name="physical-health"><br><br>
+
+        <label for="mental-health-disorder">Would you feel comfortable discussing a mental health disorder with your coworkers?</label><br>
+		<input type="text" id="mental-health-disorder" name="mental-health-disorder"><br><br>
+
+        <label for="direct-supervisor">Would you feel comfortable discussing a mental health disorder with your direct supervisor(s)?</label><br>
+		<input type="text" id="direct-supervisor" name="direct-supervisor"><br><br>
+
+        <label for="mental-physical-health">Do you feel that your employer takes mental health as seriously as physical health?</label><br>
+		<input type="text" id="mental-physical-health" name="mental-physical-health"><br><br>
+
+        <label for="co-worker-health">Have you heard of or observed negative consequences for co-workers who have been open about mental health issues in your workplace?</label><br>
+		<input type="text" id="co-worker-health" name="co-worker-health"><br><br>
+
+		<button type="submit" id="submit-survey">Submit</button>
+	</form>
+
+	<div id="survey-results"></div>
+
+	<script>
+		const form = document.querySelector('#survey-form');
+		const results = document.querySelector('#survey-results');
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			const formData = new FormData(form);
+			const response = await fetch('/get_survey_prediction', {
+				method: 'POST',
+				body: formData
+			});
+
+			const prediction = await response.text();
+			results.innerHTML = `<p>Prediction: ${prediction}</p>`;
+		});
+	</script>
+
+</body>
+</html>
